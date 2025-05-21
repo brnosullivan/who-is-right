@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Right?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+        }
+
+        #questionTitle {
+    font-size: 36px;
+    font-weight: 700;
+    color: #222;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+        #declaration {
+    font-size: 18px;
+    color: #444;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+        
+       #buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+        
+
+        #answer {
+            margin-top: 30px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+
+   button {
+    font-size: 20px;
+    padding: 14px 28px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+    color: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+    min-width: 240px;
+    text-align: center;
+}
+
+button:hover {
+    transform: scale(1.07);
+    background: linear-gradient(145deg, #111, #222);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
+}
+        }
+    </style>
+</head>
+
+    
+<body>
+    <h1 id="questionTitle">Who’s Right?</h1>
+    <p id="declaration">
+    <b>Binding Affirmation Clause:</b> <br> By pressing the button below, the user hereby acknowledges, affirms, and solemnly swears to adhere to the ruling provided.
+        This declaration shall be considered legally binding and may be used as definitive proof in all future arguments, debates, and dinner table disputes.
+        User waives all rights to claim otherwise, even when proven empirically incorrect, and accepts full responsibility for any subsequent consequences,
+        including but not limited to: icy stares, sarcastic comments, or prolonged silent treatments. <br> <b>Press wisely.</b> <br><br><br><br>
+</p>
+    <div id="buttons">
+        <button id="checkArabella">Is Arabella Right?</button>
+        <button id="checkBrian">Is Brian Right?</button>
+    </div>
+    <div id="answer"></div>
+
+<script>
+    const arabellaAnswers = [
+        "Absolutely not", "Definitely not", "Nope", "Not even close", "Wrong again", "Never",
+        "Hard no", "Big no", "Still no", "Nope, try again", "Negative", "Not this time",
+        "Not ever", "Are you serious? No", "You wish", "Not in a million years",
+        "That’s a solid no", "Not remotely", "Not a chance", "Nice try, but no",
+        "Laughably incorrect", "Far from it", "Dream on", "Denied",
+        "That’s gonna be a no from me", "Nope, nada", "You couldn’t be more wrong",
+        "Not happening", "Let’s not kid ourselves", "LOL no", "Close… but not really",
+        "Dangerously incorrect", "Better luck next time", "No. Just no",
+        "Error 404: Arabella not right", "Math says no", "Science says no",
+        "Common sense says no", "Nope—case closed", "Swing and a miss",
+        "Try again later", "She’s wrong, as usual", "Still wrong",
+        "As wrong as it gets", "Epic no", "False", "My sources say no",
+        "The universe disagrees", "Completely incorrect", "Objectively wrong"
+    ];
+
+    const brianAnswers = [
+        "Absolutely", "Correct as always", "Nailed it", "Yes, Brian is right", "Couldn't be more right",
+        "You're spot on, Brian", "Exactly right", "Without a doubt", "Brian knows best",
+        "That's 100% true", "Truth spoken by Brian", "Obviously yes", "You got it, Brian",
+        "The facts support you", "Undeniably right", "Affirmative", "As always, correct",
+        "Right on the money", "Impressively accurate", "Brian wins again",
+        "Incontrovertibly yes", "No debate - Brian is right", "That's a brilliant point",
+        "Flawlessly reasoned", "Unquestionably yes"
+    ];
+
+    function showAnswer(text) {
+        const answerDiv = document.getElementById('answer');
+        answerDiv.textContent = text;
+
+        setTimeout(() => {
+            answerDiv.textContent = '';
+        }, 1000);
+    }
+
+    document.getElementById('checkArabella').addEventListener('click', function() {
+        const randomAnswer = arabellaAnswers[Math.floor(Math.random() * arabellaAnswers.length)];
+        showAnswer(randomAnswer);
+    });
+
+    document.getElementById('checkBrian').addEventListener('click', function() {
+        const randomAnswer = brianAnswers[Math.floor(Math.random() * brianAnswers.length)];
+        showAnswer(randomAnswer);
+    });
+</script>
+</body>
+</html>
