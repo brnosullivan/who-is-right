@@ -115,63 +115,62 @@
     <div id="fireworks-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/fireworks.js"></script>
-<script>
-    const arabellaAnswers = [
-        "Absolutely not", "Definitely not", "Nope", "Not even close", "Wrong again", "Never",
-        "Hard no", "Big no", "Still no", "Nope, try again", "Negative", "Not this time",
-        "Not ever", "Are you serious? No", "You wish", "Not in a million years",
-        "That’s a solid no", "Not remotely", "Not a chance", "Nice try, but no",
-        "Laughably incorrect", "Far from it", "Dream on", "Denied",
-        "That’s gonna be a no from me", "Nope, nada", "You couldn’t be more wrong",
-        "Not happening", "Let’s not kid ourselves", "LOL no", "Close… but not really",
-        "Dangerously incorrect", "Better luck next time", "No. Just no",
-        "Error 404: Arabella not right", "Math says no", "Science says no",
-        "Common sense says no", "Nope—case closed", "Swing and a miss",
-        "Try again later", "She’s wrong, as usual", "Still wrong",
-        "As wrong as it gets", "Epic no", "False", "My sources say no",
-        "The universe disagrees", "Completely incorrect", "Objectively wrong",
-        "Yes" // Trigger value
-    ];
+    <script>
+        const arabellaAnswers = [
+            "Absolutely not", "Definitely not", "Nope", "Not even close", "Wrong again", "Never",
+            "Hard no", "Big no", "Still no", "Nope, try again", "Negative", "Not this time",
+            "Not ever", "Are you serious? No", "You wish", "Not in a million years",
+            "That’s a solid no", "Not remotely", "Not a chance", "Nice try, but no",
+            "Laughably incorrect", "Far from it", "Dream on", "Denied",
+            "That’s gonna be a no from me", "Nope, nada", "You couldn’t be more wrong",
+            "Not happening", "Let’s not kid ourselves", "LOL no", "Close… but not really",
+            "Dangerously incorrect", "Better luck next time", "No. Just no",
+            "Error 404: Arabella not right", "Math says no", "Science says no",
+            "Common sense says no", "Nope—case closed", "Swing and a miss",
+            "Try again later", "She’s wrong, as usual", "Still wrong",
+            "As wrong as it gets", "Epic no", "False", "My sources say no",
+            "The universe disagrees", "Completely incorrect", "Objectively wrong",
+            "Yes"
+        ];
 
-    const brianAnswers = [
-        "Absolutely", "Correct as always", "Nailed it", "Yes, Brian is right", "Couldn't be more right",
-        "You're spot on, Brian", "Exactly right", "Without a doubt", "Brian knows best",
-        "That's 100% true", "Truth spoken by Brian", "Obviously yes", "You got it, Brian",
-        "The facts support you", "Undeniably right", "Affirmative", "As always, correct",
-        "Right on the money", "Impressively accurate", "Brian wins again",
-        "Incontrovertibly yes", "No debate - Brian is right", "That's a brilliant point",
-        "Flawlessly reasoned", "Unquestionably yes"
-    ];
+        const brianAnswers = [
+            "Absolutely", "Correct as always", "Nailed it", "Yes, Brian is right", "Couldn't be more right",
+            "You're spot on, Brian", "Exactly right", "Without a doubt", "Brian knows best",
+            "That's 100% true", "Truth spoken by Brian", "Obviously yes", "You got it, Brian",
+            "The facts support you", "Undeniably right", "Affirmative", "As always, correct",
+            "Right on the money", "Impressively accurate", "Brian wins again",
+            "Incontrovertibly yes", "No debate - Brian is right", "That's a brilliant point",
+            "Flawlessly reasoned", "Unquestionably yes"
+        ];
 
-    const container = document.getElementById('fireworks-container');
-    const fireworks = new Fireworks(container, { autoresize: true, opacity: 0.7 });
+        const container = document.getElementById('fireworks-container');
+        const fireworks = new Fireworks(container, { autoresize: true, opacity: 0.7 });
 
-    function showAnswer(text) {
-        const answerDiv = document.getElementById('answer');
-        answerDiv.textContent = text;
+        function showAnswer(text) {
+            const answerDiv = document.getElementById('answer');
+            answerDiv.textContent = text;
 
-        if (text.trim().toLowerCase() === "yes") {
-            fireworks.start();
+            if (text.trim().toLowerCase() === "yes") {
+                fireworks.start();
+                setTimeout(() => {
+                    fireworks.stop();
+                }, 3000);
+            }
+
             setTimeout(() => {
-                fireworks.stop();
-            }, 3000);
+                answerDiv.textContent = '';
+            }, 1000);
         }
 
-        setTimeout(() => {
-            answerDiv.textContent = '';
-        }, 1000);
-    }
+        document.getElementById('checkArabella').addEventListener('click', function () {
+            const randomAnswer = arabellaAnswers[Math.floor(Math.random() * arabellaAnswers.length)];
+            showAnswer(randomAnswer);
+        });
 
-    document.getElementById('checkArabella').addEventListener('click', function () {
-        const randomAnswer = arabellaAnswers[Math.floor(Math.random() * arabellaAnswers.length)];
-        showAnswer(randomAnswer);
-    });
-
-    document.getElementById('checkBrian').addEventListener('click', function () {
-        const randomAnswer = brianAnswers[Math.floor(Math.random() * brianAnswers.length)];
-        showAnswer(randomAnswer);
-    });
-</script>
-
+        document.getElementById('checkBrian').addEventListener('click', function () {
+            const randomAnswer = brianAnswers[Math.floor(Math.random() * brianAnswers.length)];
+            showAnswer(randomAnswer);
+        });
+    </script>
 </body>
 </html>
