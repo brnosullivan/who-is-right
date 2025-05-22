@@ -113,7 +113,7 @@
         <b>Binding Affirmation Clause:</b> <br> By pressing the button below, the user hereby acknowledges, affirms, and solemnly swears to adhere to the ruling provided.
         This declaration shall be considered legally binding and may be used as definitive proof in all future arguments, debates, and dinner table disputes.
         User waives all rights to claim otherwise, even when proven empirically incorrect, and accepts full responsibility for any subsequent consequences,
-        including but not limited to: icy stares, sarcastic comments, or prolonged silent treatments. <br> <b>Press wisely.</b> <br><br>disclaimer<br><br>
+        including but not limited to: icy stares, sarcastic comments, or prolonged silent treatments. <br> <b>Press wisely.</b> <br><br><br><br>
     </p>
     <div id="buttons">
         <button id="checkArabella">Is Arabella Right?</button>
@@ -124,16 +124,6 @@
 
     <script>
         const arabellaAnswers = ["Absolutely not", "Definitely not", "Nope", "Not even close", "Wrong again", "Never",
-        "Hard no", "Big no", "Still no", "Nope, try again", "Negative", "Not this time",
-        "Not ever", "Are you serious? No", "You wish", "Not in a million years",
-        "That’s a solid no", "Not remotely", "Not a chance", "Nice try, but no",
-        "Laughably incorrect", "Far from it", "Dream on", "Denied",
-        "That’s gonna be a no from me", "Nope, nada", "You couldn’t be more wrong",
-        "Not happening", "Let’s not kid ourselves", "LOL no", "Close… but not really",
-        "Dangerously incorrect", "Better luck next time", "No. Just no",
-        "Error 404: Arabella not right", "Math says no", "Science says no",
-        "Common sense says no", "Nope—case closed", "Swing and a miss",
-        "Try again later", "She’s wrong, as usual", "Still wrong",
         "As wrong as it gets", "Epic no", "False", "My sources say no",
         "The universe disagrees", "Completely incorrect", "Objectively wrong", "Arabella got one right!!"];
         const brianAnswers = [ "Absolutely", "Correct as always", "Nailed it", "Yes, Brian is right", "Couldn't be more right",
@@ -144,7 +134,7 @@
         "Incontrovertibly yes", "No debate - Brian is right", "That's a brilliant point",
         "Flawlessly reasoned", "Unquestionably yes"];
 
-        // --- Fireworks implementation: 20 seconds of random bursts ---
+        // --- Fireworks implementation: 20 seconds of random bursts, plays over page ---
         function launchFireworkAt(x, y) {
             const canvas = document.getElementById('fireworks');
             const ctx = canvas.getContext('2d');
@@ -168,7 +158,7 @@
             }
 
             function animate() {
-                // Do NOT clear the whole canvas so multiple bursts can overlap
+                // Don't clear the whole canvas here so multiple bursts overlap
                 particles.forEach(p => {
                     p.x += p.vx;
                     p.y += p.vy;
@@ -195,14 +185,13 @@
             canvas.height = window.innerHeight;
             canvas.style.display = 'block';
 
-            // Fade out effect
+            // Fade out effect (just clear, no black fill!)
             const ctx = canvas.getContext('2d');
             let fadeRunning = true;
             function fadeCanvas() {
                 if (!fadeRunning) return;
                 ctx.globalAlpha = 0.15;
-                ctx.fillStyle = "#000";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Just clear, no black!
                 ctx.globalAlpha = 1;
                 requestAnimationFrame(fadeCanvas);
             }
