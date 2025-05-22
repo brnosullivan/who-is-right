@@ -119,11 +119,21 @@
         <button id="checkArabella">Is Arabella Right?</button>
         <button id="checkBrian">Is Brian Right?</button>
     </div>
-    <div id="answer"></div>
+    <div id="answer">Consult the Oracle</div>
     <canvas id="fireworks"></canvas>
 
     <script>
         const arabellaAnswers = ["Absolutely not", "Definitely not", "Nope", "Not even close", "Wrong again", "Never",
+        "Hard no", "Big no", "Still no", "Nope, try again", "Negative", "Not this time",
+        "Not ever", "Are you serious? No", "You wish", "Not in a million years",
+        "That’s a solid no", "Not remotely", "Not a chance", "Nice try, but no",
+        "Laughably incorrect", "Far from it", "Dream on", "Denied",
+        "That’s gonna be a no from me", "Nope, nada", "You couldn’t be more wrong",
+        "Not happening", "Let’s not kid ourselves", "LOL no", "Close… but not really",
+        "Dangerously incorrect", "Better luck next time", "No. Just no",
+        "Error 404: Arabella not right", "Math says no", "Science says no",
+        "Common sense says no", "Nope—case closed", "Swing and a miss",
+        "Try again later", "She’s wrong, as usual", "Still wrong",
         "As wrong as it gets", "Epic no", "False", "My sources say no",
         "The universe disagrees", "Completely incorrect", "Objectively wrong", "Arabella got one right!!"];
         const brianAnswers = [ "Absolutely", "Correct as always", "Nailed it", "Yes, Brian is right", "Couldn't be more right",
@@ -179,7 +189,7 @@
             animate();
         }
 
-        function startFireworksShow() {
+        function startFireworksShow(onFireworksEnd) {
             const canvas = document.getElementById('fireworks');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -204,6 +214,9 @@
                         fadeRunning = false;
                         canvas.style.display = 'none'; 
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        if (typeof onFireworksEnd === 'function') {
+                            onFireworksEnd();
+                        }
                     }, 1500); // Let last particles fade
                     return;
                 }
@@ -218,18 +231,25 @@
             scheduleFirework();
         }
 
+        function setOracleText() {
+            document.getElementById('answer').textContent = 'Consult the Oracle';
+        }
+
+        // On page load, display the default oracle text
+        setOracleText();
+
         function showAnswer(text) {
             const answerDiv = document.getElementById('answer');
             answerDiv.textContent = text;
 
             // Show fireworks if the answer is "Arabella got one right!!"
             if (text === "Arabella got one right!!") {
-                startFireworksShow();
+                startFireworksShow(() => {
+                    setOracleText();
+                });
+            } else {
+                setTimeout(setOracleText, 1000);
             }
-
-            setTimeout(() => {
-                answerDiv.textContent = '';
-            }, 1000);
         }
 
         document.getElementById('checkArabella').addEventListener('click', function () {
